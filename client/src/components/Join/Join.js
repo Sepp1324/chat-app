@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-import './join.css'
+import './Join.css';
 
-const Join = () => {
-    const [name, set_name] = useState('');
-    const [room, set_room] = useState('');
+export default function SignIn() {
+  const [name, setName] = useState('');
+  const [room, setRoom] = useState('');
 
-    return <div className="join-outer-container">
-        <div className="join-inner-container">
-            <h1 className="heading">Join</h1>
-            <div><input type="text" placeholder="Name" className="join-input" onChange={(event) => set_name(event.target.value)} /></div>
-            <div><input type="text" placeholder="Room" className="join-input mt-20" onChange={(event) => set_room(event.target.value)} /></div>
-            <Link onClick={event => (!name || !room) ? event.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
-                <button className="button mt-20" type="submit">Sign In</button>
-            </Link>
+  return (
+    <div className="joinOuterContainer">
+      <div className="joinInnerContainer">
+        <h1 className="heading">Join</h1>
+        <div>
+          <input placeholder="Name" className="joinInput" type="text" onChange={(event) => setName(event.target.value)} />
         </div>
+        <div>
+          <input placeholder="Room" className="joinInput mt-20" type="text" onChange={(event) => setRoom(event.target.value)} />
+        </div>
+        <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
+          <button className={'button mt-20'} type="submit">Sign In</button>
+        </Link>
+      </div>
     </div>
+  );
 }
-
-export default Join;
